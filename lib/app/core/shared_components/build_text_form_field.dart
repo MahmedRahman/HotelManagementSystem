@@ -29,6 +29,7 @@ Widget buildTextFormField({
   LetterType inputLetterType = LetterType.none,
   int inputMaxLetterNumber = 250,
   int inputMinLetterNumber = 0,
+  int maxLines = 1,
   bool requiredFiled = false,
   String? initialValue,
 }) {
@@ -85,6 +86,7 @@ Widget buildTextFormField({
         keyboardType: keyboardType,
         inputFormatters: inputFormatters,
         initialValue: initialValue,
+        maxLines: maxLines,
         decoration: InputDecoration(
           fillColor: Colors.grey[200],
           hintText: hintText == null ? labelText : hintText,
