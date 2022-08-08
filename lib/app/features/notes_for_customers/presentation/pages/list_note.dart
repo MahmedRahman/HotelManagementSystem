@@ -5,26 +5,96 @@ import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/constans/app_constants.dart';
 import 'package:project/app/core/color/app_color.dart';
 import 'package:project/app/core/dialog.dart';
-import 'package:project/app/core/shared_page/app_empty.dart';
 import 'package:project/app/core/shared_page/app_loading.dart';
 import 'package:project/app/core/shared_page/app_not_internet.dart';
 
 import '../../../../core/shared_components/build_text_form_field.dart';
+import '../../../customers/domain/entities/customers.dart';
 import '../../domain/entities/note_for_customer.dart';
 import '../controller/note_for_customer_controller.dart';
 
 class NoteCustomersListView extends GetView<NotesForCustomersController> {
+  NoteCustomersListView({required this.customer});
+  Customer customer;
+
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-      (state) => buildBody(state),
-      onEmpty: EmptyNotes(),
+      (state) => buildBody(state, context),
+      onEmpty: EmptyNotes(customer: customer),
       onError: app_error,
       onLoading: app_loading(),
     );
   }
 
-  Padding buildBody(List<NoteForCustomer>? notesList) {
+  Padding buildBody(List<NoteForCustomer>? notesList, BuildContext context) {
+    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+    void show(BuildContext context, {NoteForCustomer? note}) {
+      bool isEdit = false;
+      NoteForCustomer? noteForCustomer;
+      if (note == null) {
+        noteForCustomer = NoteForCustomer(
+            note: '',
+            createdAt: DateTime.now().toString().substring(0, 10),
+            createdBy: '',
+            customerId: customer.id.toString());
+      } else {
+        isEdit = true;
+        noteForCustomer = note;
+      }
+
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: buildTextFormField(
+                          labelText: 'من فضلك ادخل ملاحظتك هنا',
+                          requiredFiled: true,
+                          inputMinLetterNumber: 3,
+                          maxLines: 4,
+                          inputMaxLetterNumber: 250,
+                          inputLetterType: LetterType.LetterBothWithSpace,
+                          initialValue: note?.note ?? '',
+                          onChanged: (vlu) => noteForCustomer?.setNote = vlu,
+                          onSaved: (value) {
+                            noteForCustomer?.note = value!;
+                          },
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          child: Text("Add Note"),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate() == false) {
+                              return;
+                            }
+                            _formKey.currentState!.save();
+
+                            if (isEdit) {
+                              controller.updateNote(
+                                  oldNote: noteForCustomer!,
+                                  newNote: noteForCustomer);
+                              return;
+                            }
+                            controller.addNote(noteForCustomer!);
+                            Get.back();
+                          }),
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+    }
+
     Widget bntController(NoteForCustomer note) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,9 +107,7 @@ class NoteCustomersListView extends GetView<NotesForCustomersController> {
           ),
           IconButton(
             icon: Icon(Icons.edit),
-            onPressed: () {
-              controller.editNote(note);
-            },
+            onPressed: () => show(context, note: note),
           ),
           IconButton(
             icon: Icon(Icons.delete),
@@ -112,6 +180,7 @@ class NoteCustomersListView extends GetView<NotesForCustomersController> {
         (index) {
           final note = notesList[index];
 
+          print('nooote => $note');
           return DataRow(
             cells: [
               DataCell(
@@ -120,10 +189,10 @@ class NoteCustomersListView extends GetView<NotesForCustomersController> {
                 ),
               ),
               DataCell(
-                Text(note.createdBy),
+                Text(note.createdBy!),
               ),
               DataCell(
-                Text(note.createdAt),
+                Text(note.createdAt!),
               ),
               DataCell(
                 bntController(
@@ -185,9 +254,7 @@ class NoteCustomersListView extends GetView<NotesForCustomersController> {
                     Icons.add,
                     color: KWhite,
                   ),
-                  onPressed: () {
-                    Get.toNamed(Routes.CustomerAddorEditView);
-                  },
+                  onPressed: () => show(context),
                 ),
                 IconButton(
                   icon: Icon(
@@ -244,40 +311,56 @@ var tableHeader = [
   ),
 ];
 
-class EmptyNotes extends StatelessWidget {
-  EmptyNotes();
+class EmptyNotes extends GetView<NotesForCustomersController> {
+  EmptyNotes({required this.customer});
+  Customer customer;
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void show(BuildContext context) {
+    NoteForCustomer? noteForCustomer = NoteForCustomer(
+        note: '',
+        createdAt: DateTime.now().toString().substring(0, 10),
+        createdBy: '',
+        customerId: customer.id.toString());
+
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             content: Form(
+              key: _formKey,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: buildTextFormField(
-                      labelText: 'من فضلك ادخل ملاحظتك هنا',
-                      requiredFiled: true,
-                      inputMinLetterNumber: 3,
-                      maxLines: 4,
-                      inputMaxLetterNumber: 250,
-                      inputLetterType: LetterType.LetterBothWithSpace,
-                      // initialValue: customer.name,
-                      onSaved: (value) {
-                        // customer.name = value.toString();
-                      },
-                    )
-                  ),
+                      padding: EdgeInsets.all(8.0),
+                      child: buildTextFormField(
+                        labelText: 'من فضلك ادخل ملاحظتك هنا',
+                        requiredFiled: true,
+                        inputMinLetterNumber: 3,
+                        maxLines: 4,
+                        inputMaxLetterNumber: 250,
+                        inputLetterType: LetterType.LetterBothWithSpace,
+                        // initialValue: customer.name,
+                        onChanged: (vlu) => noteForCustomer.setNote = vlu,
+                        onSaved: (value) {
+                          noteForCustomer.note = value!;
+                        },
+                      )),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                        child: Text("Submitß"),
+                    child: ElevatedButton(
+                        child: Text("Add Note"),
                         onPressed: () {
-                          // if (_formKey.currentState.validate()) {
-                          //   _formKey.currentState.save();
+                          if (_formKey.currentState!.validate() == false) {
+                            return;
+                          }
+                          _formKey.currentState!.save();
+
+                          print('noteForCustomer => $noteForCustomer');
+                          controller.addNote(noteForCustomer);
+                          Get.back();
                         }),
                   )
                 ],
@@ -341,7 +424,7 @@ class EmptyNotes extends StatelessWidget {
       height: 200,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: ListView(
           children: [
             Container(
               decoration: BoxDecoration(

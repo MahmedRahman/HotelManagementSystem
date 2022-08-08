@@ -105,6 +105,7 @@ Future<void> dialogYesNo({
   dynamic Function()? btnNoPress,
 }) async {
   AwesomeDialog(
+    width: 500,
     context: Get.context!,
     dialogType: DialogType.QUESTION,
     animType: AnimType.SCALE,

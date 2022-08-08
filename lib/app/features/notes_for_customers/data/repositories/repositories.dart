@@ -21,8 +21,9 @@ class NotesCustomerRepositoriesImpl implements NoteForCustomerRepository {
   @override
   Future<Either<Failure, Unit>> updateNote(
       NoteForCustomer oldNote, NoteForCustomer newNotes) async {
+    int itemIndex = notes.indexOf(oldNote);
     notes.remove(oldNote);
-    notes.add(newNotes);
+    notes.insert(itemIndex, newNotes);
     return Right(unit);
   }
 

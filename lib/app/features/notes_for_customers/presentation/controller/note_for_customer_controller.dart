@@ -48,11 +48,11 @@ class NotesForCustomersController extends GetxController
   }
 
   void updateNote({
-    required NoteForCustomer OldNote,
+    required NoteForCustomer oldNote,
     required NoteForCustomer newNote,
   }) async {
     var data = await NotesCustomerRepositoriesImpl()
-        .updateNote(OldNote, newNote);
+        .updateNote(oldNote, newNote);
     data.fold(
       (failure) {
         change(null, status: RxStatus.error(failure.toString()));

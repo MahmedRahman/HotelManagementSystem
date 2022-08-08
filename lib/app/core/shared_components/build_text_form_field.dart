@@ -26,6 +26,7 @@ Widget buildTextFormField({
   String? Function(String?)? validator,
   void Function(String)? onFieldSubmitted,
   void Function(String?)? onSaved,
+  ValueChanged<String>? onChanged,
   LetterType inputLetterType = LetterType.none,
   int inputMaxLetterNumber = 250,
   int inputMinLetterNumber = 0,
@@ -36,10 +37,12 @@ Widget buildTextFormField({
   List<TextInputFormatter>? inputFormatters = [];
   inputFormatters.add(LengthLimitingTextInputFormatter(inputMaxLetterNumber));
   if (inputLetterType == LetterType.Number)
-    inputFormatters.add(FilteringTextInputFormatter.allow((RegExp(r'(^\d*\.?\d*)'))));
+    inputFormatters
+        .add(FilteringTextInputFormatter.allow((RegExp(r'(^\d*\.?\d*)'))));
 
   if (inputLetterType == LetterType.LetterArabic)
-    inputFormatters.add(FilteringTextInputFormatter.allow((RegExp(r'(^\d*\.?\d*)'))));
+    inputFormatters
+        .add(FilteringTextInputFormatter.allow((RegExp(r'(^\d*\.?\d*)'))));
 
   if (inputLetterType == LetterType.LetterBoth)
     inputFormatters.add(
@@ -87,6 +90,7 @@ Widget buildTextFormField({
         inputFormatters: inputFormatters,
         initialValue: initialValue,
         maxLines: maxLines,
+        onChanged: onChanged,
         decoration: InputDecoration(
           fillColor: Colors.grey[200],
           hintText: hintText == null ? labelText : hintText,

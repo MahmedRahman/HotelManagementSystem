@@ -18,55 +18,54 @@ class CustomerView extends GetView {
 
   Widget buildBody(Customer customer) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              buildHelperTile(text: 'تفاصيل العميل'),
-              buildHelperLabel(
-                helperText: 'الاسم',
-                text: customer.name,
-              ),
-              buildHelperLabel(
-                helperText: 'التليفون',
-                text: customer.phone,
-              ),
-              buildHelperLabel(
-                helperText: 'البريد الالكترونى',
-                text: customer.email.toString(),
-              ),
-              buildHelperLabel(
-                helperText: 'العنوان',
-                text: customer.address.toString(),
-              ),
-              buildHelperLabel(
-                helperText: 'الجنس',
-                text: customer.genderString.toString(),
-              ),
-              buildHelperLabel(
-                helperText: 'نوع العميل',
-                text: customer.customerCategoryString.toString(),
-              ),
-              buildHelperLabel(
-                helperText: 'نوع الهوية',
-                text: customer.typeString.toString(),
-              ),
-              buildHelperLabel(
-                helperText: 'رقم الهوية',
-                text: customer.idNumber.toString(),
-              ),
-              buildHelperLabel(
-                helperText: 'العمل',
-                text: customer.work.toString(),
-              ),
-              buildHelperLabel(
-                helperText: 'هاتف العمل',
-                text: customer.workPhone.toString(),
-              ),
-              SizedBox(height: 300, child: NoteCustomersListView())
-            ],
+      body: ListView(
+        children: [
+          buildHelperTile(text: 'تفاصيل العميل'),
+          buildHelperLabel(
+            helperText: 'الاسم',
+            text: customer.name,
           ),
-        ),
+          buildHelperLabel(
+            helperText: 'التليفون',
+            text: customer.phone,
+          ),
+          buildHelperLabel(
+            helperText: 'البريد الالكترونى',
+            text: customer.email.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'العنوان',
+            text: customer.address.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'الجنس',
+            text: customer.genderString.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'نوع العميل',
+            text: customer.customerCategoryString.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'نوع الهوية',
+            text: customer.typeString.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'رقم الهوية',
+            text: customer.idNumber.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'العمل',
+            text: customer.work.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'هاتف العمل',
+            text: customer.workPhone.toString(),
+          ),
+
+          NoteCustomersListView(
+            customer: customer,
+          )
+        ],
       ),
     );
   }
