@@ -8,6 +8,10 @@ abstract class Routes {
   static const CustomerAddorEditView = _Paths.CustomerAddorEditView;
   static const CustomerView = _Paths.CustomerView;
 
+  static const CompanyListView = _Paths.CompanyListView;
+ static const CompanyAddorEditView = _Paths.CompanyAddorEditView;
+
+
   static const DashBoard = _Paths.DashBoard;
   static const DashBoardMain = _Paths.DashBoardMain;
 }
@@ -19,4 +23,7 @@ abstract class _Paths {
   static const CustomerListView = '/CustomersListView';
   static const CustomerView = '/CustomerView';
   static const CustomerAddorEditView = '/CustomerAddorEdit';
+
+  static const CompanyListView = '/CompanyListView';
+  static const CompanyAddorEditView = '/CompanyAddorEditView';
 }

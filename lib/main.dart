@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:project/app/config/routes/app_pages.dart';
+import 'package:project/app/features/company/presentation/controller/company_controller.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 import 'app/translations/app_translations.dart';
 
@@ -27,6 +28,11 @@ class Binding extends Bindings {
   void dependencies() {
     Get.lazyPut<CustomersController>(
       () => CustomersController(),
+      fenix: true,
+    );
+
+    Get.lazyPut<CompanyController>(
+      () => CompanyController(),
       fenix: true,
     );
   }

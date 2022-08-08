@@ -15,8 +15,11 @@ enum LetterType {
 
 var letterBothWithSpaceRegExp =
     r'(^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$)';
+
 var letterBothRegExp =
     r'(^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$)';
+
+var numberRegExp = '';
 
 Widget buildTextFormField({
   required String labelText,
@@ -42,16 +45,12 @@ Widget buildTextFormField({
 
   if (inputLetterType == LetterType.LetterBoth)
     inputFormatters.add(
-      FilteringTextInputFormatter.allow(
-        (RegExp(letterBothRegExp)),
-      ),
+      FilteringTextInputFormatter.allow((RegExp(letterBothRegExp))),
     );
 
   if (inputLetterType == LetterType.LetterBothWithSpace)
     inputFormatters.add(
-      FilteringTextInputFormatter.allow(
-        (RegExp(letterBothWithSpaceRegExp)),
-      ),
+      FilteringTextInputFormatter.allow((RegExp(letterBothWithSpaceRegExp))),
     );
 
   return Column(

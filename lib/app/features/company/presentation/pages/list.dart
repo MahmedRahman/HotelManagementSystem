@@ -8,40 +8,43 @@ import 'package:project/app/core/dialog.dart';
 import 'package:project/app/core/shared_page/app_empty.dart';
 import 'package:project/app/core/shared_page/app_loading.dart';
 import 'package:project/app/core/shared_page/app_not_internet.dart';
+import 'package:project/app/features/company/domain/entities/companys.dart';
+import 'package:project/app/features/company/presentation/controller/company_controller.dart';
 import 'package:project/app/features/customers/domain/entities/customers.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 
-class CustomersListView extends GetView<CustomersController> {
+class CompanyListView extends GetView<CompanyController> {
   @override
   Widget build(BuildContext context) {
     return controller.obx(
       (state) => buildBody(state),
       onEmpty: app_empty(
-          title: 'لا يوجد عملاء',
-          msg: 'قم باضافة عملاء الان  الى التحكم وإدارة الشركات والحجوزات الجماعية',
-          onPressed: () {
-            Get.toNamed(Routes.CustomerAddorEditView);
-          }),
+        title: 'لا يوجد شركات',
+        msg: 'قم باضافة شركاتك الان',
+        onPressed: () {
+          Get.toNamed(Routes.CompanyAddorEditView);
+        },
+      ),
       onError: app_error,
       onLoading: app_loading(),
     );
   }
 
-  Scaffold buildBody(List<Customer>? customerList) {
-    Widget bntController(Customer customer) {
+  Scaffold buildBody(List<Company>? companyList) {
+    Widget bntController(Company company) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
             icon: Icon(Icons.remove_red_eye),
             onPressed: () {
-              controller.viewCustomer(customer);
+              // controller.viewCustomer(customer);
             },
           ),
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-              controller.editCustomer(customer);
+              // controller.editCustomer(customer);
             },
           ),
           IconButton(
@@ -54,7 +57,7 @@ class CustomersListView extends GetView<CustomersController> {
                   Get.back();
                 },
                 btnYesPress: () {
-                  controller.deleteCustomer(customer);
+                  //  controller.deleteCustomer(customer);
                 },
               );
             },
@@ -66,33 +69,33 @@ class CustomersListView extends GetView<CustomersController> {
     var tableHeader = [
       DataColumn(
         label: Text(
-          'الاسم',
+          'اسم الشركة',
           textAlign: TextAlign.center,
         ),
       ),
       DataColumn(
         label: Text(
-          'رقم الجوال',
+          'هاتف الشركة',
+        ),
+      ),
+      DataColumn(
+        label: Text(
+          'المدينة',
+        ),
+      ),
+      DataColumn(
+        label: Text(
+          'الشخص المسؤل',
+        ),
+      ),
+      DataColumn(
+        label: Text(
+          'هاتف الشخص المسؤل',
         ),
       ),
       DataColumn(
         label: Text(
           'البريد الإلكتروني',
-        ),
-      ),
-      DataColumn(
-        label: Text(
-          'تصنيف العميل',
-        ),
-      ),
-      DataColumn(
-        label: Text(
-          'الجنس',
-        ),
-      ),
-      DataColumn(
-        label: Text(
-          'الجنسية',
         ),
       ),
       DataColumn(
@@ -126,42 +129,42 @@ class CustomersListView extends GetView<CustomersController> {
       ),
       columns: tableHeader,
       rows: List.generate(
-        customerList!.length,
+        companyList!.length,
         (index) => DataRow(
           cells: [
             DataCell(
               Text(
-                customerList.elementAt(index).name.toString(),
+                companyList.elementAt(index).name.toString(),
               ),
             ),
             DataCell(
               Text(
-                customerList.elementAt(index).phone.toString(),
+                companyList.elementAt(index).phone.toString(),
               ),
             ),
             DataCell(
               Text(
-                customerList.elementAt(index).email.toString(),
+                companyList.elementAt(index).city.toString(),
               ),
             ),
             DataCell(
               Text(
-                customerList.elementAt(index).customerCategoryString.toString(),
+                companyList.elementAt(index).personInchargeName.toString(),
               ),
             ),
             DataCell(
               Text(
-                customerList.elementAt(index).genderString.toString(),
+                companyList.elementAt(index).personInchargePhone.toString(),
               ),
             ),
             DataCell(
               Text(
-                customerList.elementAt(index).nationalityString.toString(),
+                companyList.elementAt(index).email.toString(),
               ),
             ),
             DataCell(
               bntController(
-                customerList.elementAt(index),
+                companyList.elementAt(index),
               ),
             ),
           ],
@@ -206,7 +209,7 @@ class CustomersListView extends GetView<CustomersController> {
                           ),
                         ),
                         subtitle: Text(
-                          'عدد العملاء : ${customerList.length}',
+                          'عدد العملاء : ${companyList.length}',
                           style: TextStyle(
                             color: KWhite70,
                             height: 1.5,
@@ -230,7 +233,7 @@ class CustomersListView extends GetView<CustomersController> {
                       color: KWhite,
                     ),
                     onPressed: () {
-                      controller.getAllCustomers();
+                      controller.getAllCompany();
                     },
                   ),
                 ],

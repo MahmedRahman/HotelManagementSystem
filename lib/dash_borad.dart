@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/app/core/responsive.dart';
+import 'package:project/app/features/company/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
 
@@ -12,56 +16,189 @@ class DashBoard extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        children: [
-          Obx(
-            () {
-              return Flexible(
-                flex: 2,
-                child: Container(
-                  child: Drawer(
-                    elevation: 5,
-                    child: ListView(
-                      children: [
-                        buildMenuImage(
-                          icon: EvaIcons.monitor,
-                        ),
-                        buildMenuRow(
-                          iconLeading: EvaIcons.infoOutline,
-                          title: 'الرئسية',
-                          isSelected: IndexedStackIndex == 0,
-                          onTap: () {
-                            IndexedStackIndex.value = 0;
-                          },
-                        ),
-                        buildMenuRow(
-                          iconLeading: EvaIcons.infoOutline,
-                          title: 'العملاء',
-                          isSelected: IndexedStackIndex == 1,
-                          onTap: () {
-                            IndexedStackIndex.value = 1;
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-          Flexible(
-            flex: 10,
-            child: Obx(
+      resizeToAvoidBottomInset: true,
+      appBar: Responsive.isMobile(context)
+          ? AppBar(
+              title: Text('نظام فندقة لإدارة الوحدات العقارية'),
+              elevation: 0,
+              backgroundColor: KMain,
+            )
+          : null,
+      drawer: Responsive.isMobile(context) ? _drawer() : null,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        color: Colors.blueGrey,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Obx(
               () {
-                return IndexedStack(
-                  index: IndexedStackIndex.value,
-                  children: [
-                    DashBoardView(),
-                    CustomersListView(),
-                  ],
-                );
+                return Responsive.isMobile(context)
+                    ? SizedBox.shrink()
+                    : Flexible(
+                        flex: 2,
+                        fit: FlexFit.tight,
+                        child: _drawer(),
+                      );
               },
             ),
+            Expanded(
+              flex: 10,
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: Container(
+                        height: 60,
+                        width: double.infinity,
+                        color: Colors.red,
+                        child: _header(textCenter: 'نظام فندقة لإدارة الوحدات العقارية'),
+                      ),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      flex: 12,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: double.infinity,
+                        color: Colors.green,
+                        child: Obx(
+                          () {
+                            return IndexedStack(
+                              index: IndexedStackIndex.value,
+                              children: [
+                                DashBoardView(),
+                                CustomersListView(),
+                                CompanyListView(),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: Container(
+                        height: 60,
+                        width: double.infinity,
+                        //color: Colors.blue,
+                        child: _footer(textCenter: 'مرحبا بك في نظام فندقة لإدارة الوحدات العقارية'),
+                      ),
+                      flex: 1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _header({required String textCenter}) {
+    return Container(
+      width: double.infinity,
+      color: KMain,
+      child: Row(
+        children: [
+          IconButton(
+            icon: Icon(
+              EvaIcons.menu,
+              color: KWhite,
+            ),
+            onPressed: () {
+              log('message');
+            },
+          ),
+          SizedBox(width: 10),
+          Text(
+            textCenter,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: KWhite,
+              height: 1.5,
+            ),
+          ),
+          Spacer(),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              EvaIcons.settings,
+              color: KWhite,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.notifications_on,
+              color: KWhite,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              EvaIcons.menu2,
+              color: KWhite,
+            ),
+          ),
+          SizedBox(width: 10),
+        ],
+      ),
+    );
+  }
+
+  Widget _footer({required String textCenter}) {
+    return Container(
+      color: KMain,
+      child: Center(
+        child: Text(
+          textCenter,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Drawer _drawer() {
+    return Drawer(
+      backgroundColor: KWhite70,
+      elevation: 5,
+      child: ListView(
+        children: [
+          buildMenuImage(
+            icon: EvaIcons.monitor,
+          ),
+          buildMenuRow(
+            iconLeading: EvaIcons.home,
+            title: 'الرئسية',
+            isSelected: IndexedStackIndex == 0,
+            onTap: () {
+              IndexedStackIndex.value = 0;
+            },
+          ),
+          buildMenuRow(
+            iconLeading: EvaIcons.person,
+            title: 'العملاء',
+            isSelected: IndexedStackIndex == 1,
+            onTap: () {
+              IndexedStackIndex.value = 1;
+            },
+          ),
+          buildMenuRow(
+            iconLeading: EvaIcons.cornerDownLeft,
+            title: 'الشركات',
+            isSelected: IndexedStackIndex == 2,
+            onTap: () {
+              IndexedStackIndex.value = 2;
+            },
           ),
         ],
       ),
@@ -70,12 +207,28 @@ class DashBoard extends GetView {
 
   Widget buildMenuImage({required IconData icon}) {
     return DrawerHeader(
-      child: Center(
-        child: Icon(
-          icon,
-          size: 32,
-          color: KSecondary,
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Icon(
+              icon,
+              size: 32,
+              color: KWhite70,
+            ),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Text(
+            'نظام فندقة لإدارة الوحدات العقارية',
+            style: TextStyle(
+              color: KWhite70,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
       decoration: BoxDecoration(
         color: buildMenuImageColor,
@@ -107,7 +260,7 @@ class DashBoard extends GetView {
             title,
             style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w800,
               height: 1,
             ),
           ),

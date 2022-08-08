@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:project/app/features/company/presentation/pages/add.dart';
+import 'package:project/app/features/company/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/add.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/view.dart';
@@ -32,6 +34,14 @@ class AppPages {
     GetPage(
       name: _Paths.DashBoardMain,
       page: () => DashBoardView(),
+    ),
+    GetPage(
+      name: _Paths.CompanyListView,
+      page: () => CompanyListView(),
+    ),
+    GetPage(
+      name: _Paths.CompanyAddorEditView,
+      page: () => CompanyAddorEditView(),
     ),
   ];
 }

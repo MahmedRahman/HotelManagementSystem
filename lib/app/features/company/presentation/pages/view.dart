@@ -19,10 +19,7 @@ class CustomerView extends GetView {
       body: Container(
         child: Column(
           children: [
-            buildHelperTile(
-              text: 'تفاصيل العميل',
-              icon: null,
-            ),
+            buildHelperTile(text: 'تفاصيل العميل',    icon: null,),
             buildHelperLabel(
               helperText: 'الاسم',
               text: customer.name,

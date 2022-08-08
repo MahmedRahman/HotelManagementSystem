@@ -2,6 +2,8 @@ library app_constants;
 
 import 'package:flutter/material.dart';
 
+import '../core/color/app_color.dart';
+
 part 'api_path.dart';
 part 'assets_path.dart';
 
@@ -46,5 +48,11 @@ SizedBox kSizedBoxSpaceW15() {
 SizedBox kSizedBoxSpaceW20() {
   return SizedBox(
     width: 20,
+  );
+}
+
+Widget kDivider() {
+  return Divider(
+    color: KGray,
   );
 }

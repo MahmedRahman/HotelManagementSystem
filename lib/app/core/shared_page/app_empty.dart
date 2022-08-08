@@ -1,15 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project/app/config/routes/app_pages.dart';
+import 'package:project/app/constans/app_constants.dart';
 import 'package:project/app/core/color/app_color.dart';
 
-Widget app_empty() {
+Widget app_empty({
+  required String title,
+  required String msg,
+  required void Function()? onPressed,
+}) {
   return Scaffold(
     body: Center(
       child: Container(
-        width: 500,
-        height: 300,
+        width: Get.width * 0.4,
+        //height: 200,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -26,66 +32,69 @@ Widget app_empty() {
           ],
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Lottie.asset(
+              'assets/lottiefiles/23522-general-design.json',
+            ),
+            kSizedBoxSpaceH10(),
             Text(
-              'العملاء',
+              title,
               style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+                fontSize: 14,
+                fontWeight: FontWeight.w800,
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            kSizedBoxSpaceH10(),
             SizedBox(
               width: 300,
               child: Center(
                 child: Text(
-                  'قم باضافة عملاء الان  الى التحكم وإدارة الشركات والحجوزات الجماعية',
+                  msg,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     height: 2,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ),
+            kSizedBoxSpaceH10(),
+            kDivider(),
+            kSizedBoxSpaceH10(),
+            TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                  KMain,
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    side: BorderSide(color: KMain),
+                  ),
+                ),
+              ),
+
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                child: Text(
+                  'أضافة  عنصر جديد',
+                  style: TextStyle(
+                    fontSize: 12,
+                    height: 1.5,
+                    color: Colors.white,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ),
+              // icon: Icon(Icons.add),
+              onPressed: onPressed,
             ),
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: 50,
-              width: 150,
-              child: TextButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    KMain,
-                  ),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: KMain),
-                    ),
-                  ),
-                ),
-
-                child: Text(
-                  'أضافة  عنصر جديد',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                // icon: Icon(Icons.add),
-                onPressed: () {
-                  Get.toNamed(Routes.CustomerAddorEditView);
-                },
-              ),
-            ),
+            kSizedBoxSpaceH10(),
+            kSizedBoxSpaceH20(),
           ],
         ),
       ),

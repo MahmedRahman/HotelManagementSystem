@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:project/app/constans/app_constants.dart';
 import 'package:project/app/constans/look_up_tabel.dart';
+import 'package:project/app/core/responsive.dart';
 import 'package:project/app/core/validate.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 import 'package:project/app/core/shared_components/build_button.dart';
@@ -41,8 +42,15 @@ class CustomerAddorEdit extends GetView<CustomersController> {
           child: Column(
             children: [
               kSizedBoxSpaceH20(),
-              buildHelperTile(text: isEdit ? 'تعديل عميل' : 'أضافة عميل جديد'),
-              kSizedBoxSpaceH20(),
+              buildHelperTile(
+                text: isEdit ? 'تعديل عميل' : 'أضافة عميل جديد',
+                icon: Icons.new_label,
+              ),
+              kSizedBoxSpaceH10(),
+              Divider(
+                color: Colors.grey[500],
+              ),
+              kSizedBoxSpaceH10(),
               Column(
                 children: [
                   Form(
@@ -50,6 +58,7 @@ class CustomerAddorEdit extends GetView<CustomersController> {
                     child: Column(
                       children: [
                         buildRowInColumn(
+                          context: context,
                           left: buildTextFormField(
                             labelText: 'الاسم',
                             requiredFiled: true,
@@ -75,6 +84,7 @@ class CustomerAddorEdit extends GetView<CustomersController> {
                         ),
                         kSizedBoxSpaceH10(),
                         buildRowInColumn(
+                          context: context,
                           left: buildDropdownFromLookUpTable(
                             labelText: 'نوع العميل',
                             items: LookUpTable.customer_types,
@@ -106,6 +116,7 @@ class CustomerAddorEdit extends GetView<CustomersController> {
                         ),
                         kSizedBoxSpaceH10(),
                         buildRowInColumn(
+                          context: context,
                           left: buildDropdownFromLookUpTable(
                             labelText: 'نوع الهوية',
                             items: LookUpTable.id_types,
@@ -142,6 +153,7 @@ class CustomerAddorEdit extends GetView<CustomersController> {
                         ),
                         kSizedBoxSpaceH10(),
                         buildRowInColumn(
+                          context: context,
                           left: buildDropdownFromLookUpTable(
                             labelText: 'الجنس',
                             selectedItem: customer.genderId == null
@@ -183,6 +195,7 @@ class CustomerAddorEdit extends GetView<CustomersController> {
                         ),
                         kSizedBoxSpaceH10(),
                         buildRowInColumn(
+                          context: context,
                           left: buildTextFormField(
                             labelText: 'العمل',
                             initialValue: customer.work,
@@ -250,20 +263,29 @@ class CustomerAddorEdit extends GetView<CustomersController> {
     );
   }
 
-  Row buildRowInColumn({
+  Widget buildRowInColumn({
     required Widget left,
     required Widget right,
+    required BuildContext context,
   }) {
-    return Row(
-      children: [
-        Flexible(
-          child: left,
-        ),
-        kSizedBoxSpaceW10(),
-        Flexible(
-          child: right,
-        ),
-      ],
-    );
+    return Responsive.isMobile(context)
+        ? Column(
+            children: [
+              left,
+              kSizedBoxSpaceH10(),
+              right,
+            ],
+          )
+        : Row(
+            children: [
+              Flexible(
+                child: left,
+              ),
+              kSizedBoxSpaceW10(),
+              Flexible(
+                child: right,
+              ),
+            ],
+          );
   }
 }
