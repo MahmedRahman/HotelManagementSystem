@@ -62,8 +62,11 @@ class CustomerView extends GetView {
             text: customer.workPhone.toString(),
           ),
 
-          NoteCustomersListView(
-            customer: customer,
+          SizedBox(
+            height: 400,
+            child: NoteCustomersListView(
+              customer: customer,
+            ),
           )
         ],
       ),
