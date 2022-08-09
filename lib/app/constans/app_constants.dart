@@ -51,3 +51,9 @@ SizedBox kSizedBoxSpaceW20() {
     width: 20,
   );
 }
+
+SizedBox kSizedBoxSpaceW30() {
+  return SizedBox(
+    height: 30,
+  );
+}
