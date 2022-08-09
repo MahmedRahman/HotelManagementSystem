@@ -12,6 +12,7 @@ import 'app/core/color/app_color.dart';
 
 class DashBoard extends GetView {
   var IndexedStackIndex = 0.obs;
+  var openDrawer = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +36,13 @@ class DashBoard extends GetView {
               () {
                 return Responsive.isMobile(context)
                     ? SizedBox.shrink()
-                    : Flexible(
-                        flex: 2,
-                        fit: FlexFit.tight,
-                        child: _drawer(),
-                      );
+                    : openDrawer.value
+                        ? Flexible(
+                            flex: 2,
+                            fit: FlexFit.tight,
+                            child: _drawer(),
+                          )
+                        : SizedBox.shrink();
               },
             ),
             Expanded(
@@ -55,7 +58,13 @@ class DashBoard extends GetView {
                         height: 60,
                         width: double.infinity,
                         color: Colors.red,
-                        child: _header(textCenter: 'نظام فندقة لإدارة الوحدات العقارية'),
+                        child: _header(
+                          textCenter: 'نظام فندقة لإدارة الوحدات العقارية',
+                          onMenuPressed: () {
+                            openDrawer.value = !openDrawer.value;
+                          },
+                          onLeftMenuPressed: () {},
+                        ),
                       ),
                       flex: 1,
                     ),
@@ -85,7 +94,9 @@ class DashBoard extends GetView {
                         height: 60,
                         width: double.infinity,
                         //color: Colors.blue,
-                        child: _footer(textCenter: 'مرحبا بك في نظام فندقة لإدارة الوحدات العقارية'),
+                        child: _footer(
+                          textCenter: 'مرحبا بك في نظام فندقة لإدارة الوحدات العقارية',
+                        ),
                       ),
                       flex: 1,
                     ),
@@ -99,7 +110,11 @@ class DashBoard extends GetView {
     );
   }
 
-  Widget _header({required String textCenter}) {
+  Widget _header({
+    required String textCenter,
+    required void Function()? onMenuPressed,
+    required void Function()? onLeftMenuPressed,
+  }) {
     return Container(
       width: double.infinity,
       color: KMain,
@@ -110,9 +125,7 @@ class DashBoard extends GetView {
               EvaIcons.menu,
               color: KWhite,
             ),
-            onPressed: () {
-              log('message');
-            },
+            onPressed: onMenuPressed,
           ),
           SizedBox(width: 10),
           Text(
@@ -140,7 +153,7 @@ class DashBoard extends GetView {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: onLeftMenuPressed,
             icon: Icon(
               EvaIcons.menu2,
               color: KWhite,
@@ -156,12 +169,22 @@ class DashBoard extends GetView {
     return Container(
       color: KMain,
       child: Center(
-        child: Text(
-          textCenter,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              EvaIcons.info,
+              color: KWhite,
+            ),
+            SizedBox(width: 10),
+            Text(
+              textCenter,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );
