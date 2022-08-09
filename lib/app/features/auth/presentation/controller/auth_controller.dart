@@ -1,6 +1,8 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
+import '../../../../config/routes/app_pages.dart';
 import '../../../../constans/app_constants.dart';
 import 'dart:math';
 
@@ -24,6 +26,7 @@ class AuthController extends GetxController {
     try {
       var res = await account!.get();
       print('IsLoggedIn => ${res.email}');
+      Get.toNamed(Routes.DashBoard);
     } catch (e) {
       print('_checkIsLoggedIn error => $e');
     }
@@ -34,6 +37,7 @@ class AuthController extends GetxController {
       var result =
           await account!.createEmailSession(email: email, password: password);
       print('result user id => ${result.userId}');
+      Get.toNamed(Routes.DashBoard);
     } catch (error) {
       print('login error => $error');
     }
@@ -47,6 +51,7 @@ class AuthController extends GetxController {
           password: password,
           userId: getRandomString(36));
       print('account created => ${result.email}');
+      Get.toNamed(Routes.DashBoard);
     } catch (error) {
       print('createAccount error => $error');
     }
