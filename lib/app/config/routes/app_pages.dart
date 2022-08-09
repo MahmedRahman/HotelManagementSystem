@@ -5,12 +5,15 @@ import 'package:project/app/features/customers/presentation/pages/view.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
 import 'package:project/dash_borad.dart';
 
+import '../../features/auth/presentation/pages/sign_in.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.DashBoard;
+  static const INITIAL = Routes.SignIn;
+  // static const INITIAL = Routes.DashBoard;
 
   static final routes = [
     GetPage(
@@ -32,6 +35,10 @@ class AppPages {
     GetPage(
       name: _Paths.DashBoardMain,
       page: () => DashBoardView(),
+    ),
+    GetPage(
+      name: _Paths.SignIn,
+      page: () => LoginPage(),
     ),
   ];
 }
