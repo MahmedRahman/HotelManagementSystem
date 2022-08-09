@@ -8,6 +8,8 @@ import 'package:project/app/features/customers/domain/entities/customers.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
 
+import '../../../notes_for_customers/presentation/pages/list_note.dart';
+
 class CustomerView extends GetView {
   @override
   Widget build(BuildContext context) {
@@ -16,55 +18,56 @@ class CustomerView extends GetView {
 
   Widget buildBody(Customer customer) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            buildHelperTile(
-              text: 'تفاصيل العميل',
-              icon: null,
+      body: ListView(
+        children: [
+          buildHelperTile(text: 'تفاصيل العميل', icon: null),
+          buildHelperLabel(
+            helperText: 'الاسم',
+            text: customer.name,
+          ),
+          buildHelperLabel(
+            helperText: 'التليفون',
+            text: customer.phone,
+          ),
+          buildHelperLabel(
+            helperText: 'البريد الالكترونى',
+            text: customer.email.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'العنوان',
+            text: customer.address.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'الجنس',
+            text: customer.genderString.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'نوع العميل',
+            text: customer.customerCategoryString.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'نوع الهوية',
+            text: customer.typeString.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'رقم الهوية',
+            text: customer.idNumber.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'العمل',
+            text: customer.work.toString(),
+          ),
+          buildHelperLabel(
+            helperText: 'هاتف العمل',
+            text: customer.workPhone.toString(),
+          ),
+          SizedBox(
+            height: 400,
+            child: NoteCustomersListView(
+              customer: customer,
             ),
-            buildHelperLabel(
-              helperText: 'الاسم',
-              text: customer.name,
-            ),
-            buildHelperLabel(
-              helperText: 'التليفون',
-              text: customer.phone,
-            ),
-            buildHelperLabel(
-              helperText: 'البريد الالكترونى',
-              text: customer.email.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'العنوان',
-              text: customer.address.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'الجنس',
-              text: customer.genderString.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'نوع العميل',
-              text: customer.customerCategoryString.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'نوع الهوية',
-              text: customer.typeString.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'رقم الهوية',
-              text: customer.idNumber.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'العمل',
-              text: customer.work.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'هاتف العمل',
-              text: customer.workPhone.toString(),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

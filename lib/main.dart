@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/features/company/presentation/controller/company_controller.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
+import 'app/features/notes_for_customers/presentation/controller/note_for_customer_controller.dart';
 import 'app/translations/app_translations.dart';
 
 void main() {
@@ -33,6 +34,10 @@ class Binding extends Bindings {
 
     Get.lazyPut<CompanyController>(
       () => CompanyController(),
+    );
+
+    Get.lazyPut<NotesForCustomersController>(
+      () => NotesForCustomersController(),
       fenix: true,
     );
   }
