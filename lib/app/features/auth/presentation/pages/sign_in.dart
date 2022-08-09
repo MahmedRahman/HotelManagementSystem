@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:project/app/features/auth/presentation/controller/auth_controller.dart';
 
 import '../../../../core/shared_components/build_button.dart';
 import '../../../../core/shared_components/build_text_form_field.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +19,10 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class Body extends StatelessWidget {
+class Body extends GetView<AuthController> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,30 +34,28 @@ class Body extends StatelessWidget {
         ),
         Container(
           width: 320,
-          child: _formLogin(),
+          child: _formLogin(controller),
         )
       ],
     );
   }
 
-  Widget _formLogin() {
+  Widget _formLogin(AuthController controller) {
     return Form(
       key: _formKey,
       child: Column(
         children: [
           buildTextFormField(
-            requiredFiled: true,
-            labelText: 'البريد الإلكتروني',
-            onSaved: (value) {},
-          ),
+              requiredFiled: true,
+              labelText: 'البريد الإلكتروني',
+              onSaved: (value) {},
+              controller: _email),
           SizedBox(height: 30),
           buildTextFormField(
-            requiredFiled: true,
-            labelText: 'الرقم السري',
-            onSaved: (value) {
-              // customer.email = value.toString();
-            },
-          ),
+              requiredFiled: true,
+              labelText: 'الرقم السري',
+              onSaved: (value) {},
+              controller: _password),
           SizedBox(height: 40),
           buildButton(
             text: 'حفظ',
@@ -62,6 +64,8 @@ class Body extends StatelessWidget {
                 return;
               }
               _formKey.currentState!.save();
+
+              controller.login(_email.text, _password.text);
             },
           ),
         ],

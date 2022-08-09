@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
+import 'app/features/auth/presentation/controller/auth_controller.dart';
 import 'app/features/notes_for_customers/presentation/controller/note_for_customer_controller.dart';
 import 'app/translations/app_translations.dart';
 
@@ -32,6 +33,10 @@ class Binding extends Bindings {
     );
     Get.lazyPut<NotesForCustomersController>(
       () => NotesForCustomersController(),
+      fenix: true,
+    );
+    Get.lazyPut<AuthController>(
+      () => AuthController(),
       fenix: true,
     );
   }
