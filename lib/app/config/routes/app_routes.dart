@@ -13,12 +13,15 @@ abstract class Routes {
 
 
   static const DashBoard = _Paths.DashBoard;
+  static const SignIn = _Paths.SignIn;
   static const DashBoardMain = _Paths.DashBoardMain;
 }
 
 abstract class _Paths {
   static const DashBoard = '/DashBoard';
   static const DashBoardMain = '/DashBoardMain';
+
+  static const SignIn = '/SignIn';
 
   static const CustomerListView = '/CustomersListView';
   static const CustomerView = '/CustomerView';

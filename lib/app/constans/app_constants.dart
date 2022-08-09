@@ -7,6 +7,9 @@ import '../core/color/app_color.dart';
 part 'api_path.dart';
 part 'assets_path.dart';
 
+const String endpoint = "http://localhost/v1";
+const String projectId = "62f23ece8c93f1fb7b4e";
+
 const kFontColorPallets = [
   Color.fromRGBO(26, 31, 56, 1),
   Color.fromRGBO(72, 76, 99, 1),
@@ -54,5 +57,11 @@ SizedBox kSizedBoxSpaceW20() {
 Widget kDivider() {
   return Divider(
     color: KGray,
+  );
+}
+
+SizedBox kSizedBoxSpaceW30() {
+  return SizedBox(
+    height: 30,
   );
 }
