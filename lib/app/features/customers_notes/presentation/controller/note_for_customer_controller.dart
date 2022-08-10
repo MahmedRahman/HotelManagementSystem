@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:project/app/config/routes/app_pages.dart';
-import 'package:project/app/features/notes_for_customers/data/repositories/repositories.dart';
-import 'package:project/app/features/notes_for_customers/domain/usecaes/get_all_customer_notes.dart';
+import 'package:project/app/features/customers_notes/data/repositories/repositories.dart';
+import 'package:project/app/features/customers_notes/domain/usecaes/get_all_customer_notes.dart';
 
 import '../../domain/entities/note_for_customer.dart';
 

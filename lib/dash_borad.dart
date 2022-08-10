@@ -6,6 +6,7 @@ import 'package:project/app/features/company/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
+import 'package:project/app/features/rooms_unit_special/presentaion/pages/list_special_feature.dart';
 
 import 'app/core/color/app_color.dart';
 
@@ -56,7 +57,6 @@ class DashBoard extends GetView {
                       child: Container(
                         height: 60,
                         width: double.infinity,
-                        color: Colors.red,
                         child: _header(
                           textCenter: 'نظام فندقة لإدارة الوحدات العقارية',
                           onMenuPressed: () {
@@ -72,7 +72,6 @@ class DashBoard extends GetView {
                       child: Container(
                         height: MediaQuery.of(context).size.height,
                         width: double.infinity,
-                        color: Colors.green,
                         child: Obx(
                           () {
                             return IndexedStack(
@@ -82,6 +81,7 @@ class DashBoard extends GetView {
                                 CustomersListView(),
                                 CompanyListView(),
                                 UnitGeneralListView(),
+                                SpecialFeaturesListView(),
                               ],
                             );
                           },
@@ -229,6 +229,14 @@ class DashBoard extends GetView {
             isSelected: IndexedStackIndex == 3,
             onTap: () {
               IndexedStackIndex.value = 3;
+            },
+          ),
+          buildMenuRow(
+            iconLeading: EvaIcons.cornerDownLeft,
+            title: 'المميزات الخاصة',
+            isSelected: IndexedStackIndex == 4,
+            onTap: () {
+              IndexedStackIndex.value = 4;
             },
           ),
         ],

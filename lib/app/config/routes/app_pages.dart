@@ -9,6 +9,8 @@ import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart
 import 'package:project/app/features/rooms_unit_general/presentation/pages/add.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/view.dart';
+import 'package:project/app/features/rooms_unit_special/presentaion/pages/add_special_feature.dart';
+import 'package:project/app/features/rooms_unit_special/presentaion/pages/view_special_feature.dart';
 import 'package:project/dash_borad.dart';
 
 import '../../features/auth/presentation/pages/sign_in.dart';
@@ -69,6 +71,14 @@ class AppPages {
     GetPage(
       name: _Paths.SignIn,
       page: () => LoginPage(),
+    ),
+    GetPage(
+      name: _Paths.SpecialFeatureAddOrEditView,
+      page: () => SpecialFeatureAddEdit(),
+    ),
+    GetPage(
+      name: _Paths.SpecialFeatureView,
+      page: () => SpecialFeatureView(),
     ),
   ];
 }

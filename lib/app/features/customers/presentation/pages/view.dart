@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/app/features/customers/domain/entities/customers.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
-
-import '../../../notes_for_customers/presentation/pages/list_note.dart';
+import 'package:project/app/features/customers_notes/presentation/pages/list_note.dart';
 
 class CustomerView extends GetView {
   @override

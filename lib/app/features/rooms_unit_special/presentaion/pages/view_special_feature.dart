@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/app/features/customers/domain/entities/customers.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
-import 'package:project/app/features/rooms_unit_general/domain/entities/unit_general_entites.dart';
+import 'package:project/app/features/rooms_unit_special/domain/entities/room_special_features.dart';
 
-
-class UnitGeneralView extends GetView {
+class SpecialFeatureView extends GetView {
   @override
   Widget build(BuildContext context) {
     return buildBody(Get.arguments);
   }
 
-  Widget buildBody(UnitGeneral unitGeneral) {
+  Widget buildBody(SpecialFeatureEntity featureEntity) {
     return Scaffold(
       body: ListView(
         children: [
-          buildHelperTile(text: 'تفاصيل المميزات العامة', icon: null),
+          buildHelperTile(text: 'تفاصيل الميزه', icon: null),
           buildHelperLabel(
             helperText: 'الاسم',
-            text: unitGeneral.name.toString(),
+            text: featureEntity.name!,
           ),
           buildHelperLabel(
-            helperText: 'التليفون',
-            text: unitGeneral.state.toString(),
+            helperText: 'الحالة',
+            text: featureEntity.state.toString(),
           ),
           buildHelperLabel(
-            helperText: 'البريد الالكترونى',
-            text: unitGeneral.order.toString(),
+            helperText: 'الترتيب',
+            text: featureEntity.order.toString(),
           ),
         ],
       ),

@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/features/company/presentation/controller/company_controller.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
+import 'package:project/app/features/customers_notes/presentation/controller/note_for_customer_controller.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/controller/unit_general_controller.dart';
+import 'package:project/app/features/rooms_unit_special/presentaion/controller/special_feature_controller.dart';
 import 'app/features/auth/presentation/controller/auth_controller.dart';
-import 'app/features/notes_for_customers/presentation/controller/note_for_customer_controller.dart';
 import 'app/translations/app_translations.dart';
 
 void main() {
@@ -50,6 +51,10 @@ class Binding extends Bindings {
 
     Get.lazyPut<AuthController>(
       () => AuthController(),
+      fenix: true,
+    );
+    Get.lazyPut<SpecialFeatureController>(
+      () => SpecialFeatureController(),
       fenix: true,
     );
   }
