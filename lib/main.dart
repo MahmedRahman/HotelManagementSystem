@@ -6,6 +6,7 @@ import 'package:project/app/features/company/presentation/controller/company_con
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 import 'app/features/auth/presentation/controller/auth_controller.dart';
 import 'app/features/notes_for_customers/presentation/controller/note_for_customer_controller.dart';
+import 'app/features/room_special_features/presentaion/controller/special_feature_controller.dart';
 import 'app/translations/app_translations.dart';
 
 void main() {
@@ -45,7 +46,9 @@ class Binding extends Bindings {
       () => AuthController(),
       fenix: true,
     );
-
-    
+    Get.lazyPut<SpecialFeatureController>(
+      () => SpecialFeatureController(),
+      fenix: true,
+    );
   }
 }

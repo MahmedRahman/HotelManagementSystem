@@ -6,9 +6,11 @@ import 'package:project/app/features/customers/presentation/pages/add.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/view.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
+import 'package:project/app/features/room_special_features/presentaion/pages/add_special_feature.dart';
 import 'package:project/dash_borad.dart';
 
 import '../../features/auth/presentation/pages/sign_in.dart';
+import '../../features/room_special_features/presentaion/pages/view_special_feature.dart';
 
 part 'app_routes.dart';
 
@@ -54,6 +56,14 @@ class AppPages {
     GetPage(
       name: _Paths.SignIn,
       page: () => LoginPage(),
+    ),
+    GetPage(
+      name: _Paths.SpecialFeatureAddOrEditView,
+      page: () => SpecialFeatureAddEdit(),
+    ),
+    GetPage(
+      name: _Paths.SpecialFeatureView,
+      page: () => SpecialFeatureView(),
     ),
   ];
 }
