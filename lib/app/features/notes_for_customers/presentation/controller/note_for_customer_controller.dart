@@ -1,8 +1,5 @@
 import 'package:get/get.dart';
 import 'package:project/app/config/routes/app_pages.dart';
-import 'package:project/app/features/customers/data/repositories/customer_repositories.dart';
-import 'package:project/app/features/customers/domain/entities/customers.dart';
-import 'package:project/app/features/customers/domain/usecases/get_all_customer.dart';
 import 'package:project/app/features/notes_for_customers/data/repositories/repositories.dart';
 import 'package:project/app/features/notes_for_customers/domain/usecaes/get_all_customer_notes.dart';
 

@@ -1,14 +1,7 @@
 import 'package:get/get.dart';
 import 'package:project/app/features/company/data/repositories/company_repositories.dart';
 import 'package:project/app/features/company/domain/entities/companys.dart';
-import 'package:project/app/features/company/domain/repositories/company_resp.dart';
-import 'package:project/app/features/customers/data/repositories/customer_repositories.dart';
-import 'package:project/app/features/customers/domain/entities/customers.dart';
-import 'package:project/app/features/customers/domain/repositories/customer_resp.dart';
-import 'package:project/app/features/customers/domain/usecases/add_customer.dart';
-import 'package:project/app/features/customers/domain/usecases/get_all_customer.dart';
 
-import '../../domain/usecases/add_company.dart';
 
 class CompanyController extends GetxController with StateMixin<List<Company>> {
   @override

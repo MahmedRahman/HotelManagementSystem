@@ -1,21 +1,13 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:project/app/constans/app_constants.dart';
-import 'package:project/app/constans/look_up_tabel.dart';
 import 'package:project/app/core/validate.dart';
 import 'package:project/app/features/company/domain/entities/companys.dart';
 import 'package:project/app/features/company/presentation/controller/company_controller.dart';
-import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 import 'package:project/app/core/shared_components/build_button.dart';
-import 'package:project/app/core/shared_components/build_drop_down_from_look_up_table.dart';
-import 'package:project/app/core/shared_components/build_date_time_picker_field.dart';
 import 'package:project/app/core/shared_components/build_text_form_field.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
-import 'package:project/app/core/dialog.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 
 class CompanyAddorEditView extends GetView<CompanyController> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/constans/app_constants.dart';
@@ -10,8 +9,6 @@ import 'package:project/app/core/shared_page/app_loading.dart';
 import 'package:project/app/core/shared_page/app_not_internet.dart';
 import 'package:project/app/features/company/domain/entities/companys.dart';
 import 'package:project/app/features/company/presentation/controller/company_controller.dart';
-import 'package:project/app/features/customers/domain/entities/customers.dart';
-import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 
 class CompanyListView extends GetView<CompanyController> {
   @override

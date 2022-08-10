@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:project/app/core/shared_page/app_empty.dart';
-import 'package:project/app/core/shared_page/app_loading.dart';
-import 'package:project/app/core/shared_page/app_not_internet.dart';
 import 'package:project/app/features/customers/domain/entities/customers.dart';
-import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
 
 import '../../../notes_for_customers/presentation/pages/list_note.dart';
