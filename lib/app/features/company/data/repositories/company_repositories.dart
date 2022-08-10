@@ -19,15 +19,17 @@ class CompanyRepositoriesImp extends CompanyRepository {
 
   @override
   Future<Either<Failure, Unit>> deleteCompany(Company company) {
-    // TODO: implement deleteCompany
-    throw UnimplementedError();
+    companyList.remove(company);
+    return Future.value(right(unit));
   }
 
   @override
   Future<Either<Failure, Unit>> updateCompany(Company company) {
-    // TODO: implement updateCompany
-    throw UnimplementedError();
+    companyList.remove(company);
+    companyList.add(company);
+    return Future.value(right(unit));
   }
 
-  
+
+    
 }

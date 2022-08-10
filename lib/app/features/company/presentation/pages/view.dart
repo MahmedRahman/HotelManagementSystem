@@ -1,59 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/app/features/company/domain/entities/companys.dart';
 import 'package:project/app/features/customers/domain/entities/customers.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
 
-class CustomerView extends GetView {
+class CompanyView extends GetView {
   @override
   Widget build(BuildContext context) {
     return buildBody(Get.arguments);
   }
 
-  Widget buildBody(Customer customer) {
+  Widget buildBody(Company company) {
     return Scaffold(
       body: Container(
         child: Column(
           children: [
-            buildHelperTile(text: 'تفاصيل العميل',    icon: null,),
-            buildHelperLabel(
-              helperText: 'الاسم',
-              text: customer.name,
+            buildHelperTile(
+              text: 'تفاصيل الشركة',
+              icon: Icons.view_list,
             ),
             buildHelperLabel(
-              helperText: 'التليفون',
-              text: customer.phone,
+              helperText: 'اسم الشركة',
+              text: company.name.toString(),
             ),
             buildHelperLabel(
-              helperText: 'البريد الالكترونى',
-              text: customer.email.toString(),
+              helperText: 'هاتف الشركة',
+              text: company.phone.toString(),
             ),
             buildHelperLabel(
-              helperText: 'العنوان',
-              text: customer.address.toString(),
+              helperText: 'المدينة',
+              text: company.city.toString(),
             ),
             buildHelperLabel(
-              helperText: 'الجنس',
-              text: customer.genderString.toString(),
+              helperText: 'عنوان الشركة',
+              text: company.address.toString(),
             ),
             buildHelperLabel(
-              helperText: 'نوع العميل',
-              text: customer.customerCategoryString.toString(),
+              helperText: 'الشخص المسؤل',
+              text: company.personInchargeName.toString(),
             ),
             buildHelperLabel(
-              helperText: 'نوع الهوية',
-              text: customer.typeString.toString(),
+              helperText: 'هاتف الشخص المسؤل',
+              text: company.personInchargePhone.toString(),
             ),
             buildHelperLabel(
-              helperText: 'رقم الهوية',
-              text: customer.idNumber.toString(),
+              helperText: 'البريد الإليكترونى',
+              text: company.email.toString(),
             ),
             buildHelperLabel(
-              helperText: 'العمل',
-              text: customer.work.toString(),
-            ),
-            buildHelperLabel(
-              helperText: 'هاتف العمل',
-              text: customer.workPhone.toString(),
+              helperText: 'الرقم الضريبي',
+              text: company.taxNumber.toString(),
             ),
           ],
         ),

@@ -32,23 +32,19 @@ class AuthController extends GetxController {
   }
 
   login(String email, String password) async {
-    try {
-      var result =
-          await account!.createEmailSession(email: email, password: password);
-      print('result user id => ${result.userId}');
-      Get.toNamed(Routes.DashBoard);
-    } catch (error) {
-      print('login error => $error');
-    }
+    Get.toNamed(Routes.DashBoard);
+    // try {
+    //   var result = await account!.createEmailSession(email: email, password: password);
+    //   print('result user id => ${result.userId}');
+    //   Get.toNamed(Routes.DashBoard);
+    // } catch (error) {
+    //   print('login error => $error');
+    // }
   }
 
   createAccount(String name, String email, String password) async {
     try {
-      var result = await account!.create(
-          name: name,
-          email: email,
-          password: password,
-          userId: getRandomString(36));
+      var result = await account!.create(name: name, email: email, password: password, userId: getRandomString(36));
       print('account created => ${result.email}');
       Get.toNamed(Routes.DashBoard);
     } catch (error) {
@@ -59,6 +55,6 @@ class AuthController extends GetxController {
   var _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   Random _rnd = Random();
 
-  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  String getRandomString(int length) =>
+      String.fromCharCodes(Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 }

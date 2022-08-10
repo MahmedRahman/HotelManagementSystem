@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/app/constans/app_constants.dart';
@@ -82,7 +81,7 @@ class CompanyAddorEditView extends GetView<CompanyController> {
                             labelText: 'عنوان الشركة',
                             requiredFiled: true,
                             inputMaxLetterNumber: 20,
-                            inputLetterType: LetterType.Number,
+                            inputLetterType: LetterType.LetterBothWithSpace,
                             validator: validateMobile,
                             initialValue: company.address,
                             onSaved: (value) {

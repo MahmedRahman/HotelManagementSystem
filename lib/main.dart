@@ -45,5 +45,7 @@ class Binding extends Bindings {
       () => AuthController(),
       fenix: true,
     );
+
+    
   }
 }

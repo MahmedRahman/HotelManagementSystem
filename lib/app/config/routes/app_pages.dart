@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:project/app/features/company/presentation/pages/add.dart';
 import 'package:project/app/features/company/presentation/pages/list.dart';
+import 'package:project/app/features/company/presentation/pages/view.dart';
 import 'package:project/app/features/customers/presentation/pages/add.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/view.dart';
@@ -14,8 +15,8 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SignIn;
-  // static const INITIAL = Routes.DashBoard;
+  //static const INITIAL = Routes.SignIn;
+  static const INITIAL = Routes.DashBoard;
 
   static final routes = [
     GetPage(
@@ -41,6 +42,10 @@ class AppPages {
     GetPage(
       name: _Paths.CompanyListView,
       page: () => CompanyListView(),
+    ),
+    GetPage(
+      name: _Paths.CompanyView,
+      page: () => CompanyView(),
     ),
     GetPage(
       name: _Paths.CompanyAddorEditView,

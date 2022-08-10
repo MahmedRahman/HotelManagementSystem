@@ -39,23 +39,26 @@ Widget buildTextFormField({
 }) {
   List<TextInputFormatter>? inputFormatters = [];
   inputFormatters.add(LengthLimitingTextInputFormatter(inputMaxLetterNumber));
+
   if (inputLetterType == LetterType.Number)
-    inputFormatters
-        .add(FilteringTextInputFormatter.allow((RegExp(r'(^\d*\.?\d*)'))));
-
-  if (inputLetterType == LetterType.LetterArabic)
-    inputFormatters
-        .add(FilteringTextInputFormatter.allow((RegExp(r'(^\d*\.?\d*)'))));
-
-  if (inputLetterType == LetterType.LetterBoth)
     inputFormatters.add(
-      FilteringTextInputFormatter.allow((RegExp(letterBothRegExp))),
+      FilteringTextInputFormatter.allow(
+        (RegExp(r'(^\d*\.?\d*)')),
+      ),
     );
 
-  if (inputLetterType == LetterType.LetterBothWithSpace)
-    inputFormatters.add(
-      FilteringTextInputFormatter.allow((RegExp(letterBothWithSpaceRegExp))),
-    );
+  // if (inputLetterType == LetterType.LetterArabic)
+  //   inputFormatters.add(FilteringTextInputFormatter.allow((RegExp(r'(^\d*\.?\d*)'))));
+
+  // if (inputLetterType == LetterType.LetterBoth)
+  //   inputFormatters.add(
+  //     FilteringTextInputFormatter.allow((RegExp(letterBothRegExp))),
+  //   );
+
+  // if (inputLetterType == LetterType.LetterBothWithSpace)
+  //   inputFormatters.add(
+  //     FilteringTextInputFormatter.allow((RegExp(letterBothWithSpaceRegExp))),
+  //   );
 
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,

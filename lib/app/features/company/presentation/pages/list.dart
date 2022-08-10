@@ -35,13 +35,13 @@ class CompanyListView extends GetView<CompanyController> {
           IconButton(
             icon: Icon(Icons.remove_red_eye),
             onPressed: () {
-              // controller.viewCustomer(customer);
+              controller.viewCompany(company);
             },
           ),
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-              // controller.editCustomer(customer);
+              controller.editCompany(company);
             },
           ),
           IconButton(
@@ -54,7 +54,7 @@ class CompanyListView extends GetView<CompanyController> {
                   Get.back();
                 },
                 btnYesPress: () {
-                  //  controller.deleteCustomer(customer);
+                  controller.deleteCompany(company);
                 },
               );
             },

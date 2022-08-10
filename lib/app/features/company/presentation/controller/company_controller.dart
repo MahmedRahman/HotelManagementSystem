@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/features/company/data/repositories/company_repositories.dart';
 import 'package:project/app/features/company/domain/entities/companys.dart';
-
 
 class CompanyController extends GetxController with StateMixin<List<Company>> {
   @override
@@ -34,8 +34,50 @@ class CompanyController extends GetxController with StateMixin<List<Company>> {
       },
       (companys) {
         change(null, status: RxStatus.success());
+        getAllCompany();
       },
     );
-    getAllCompany();
+  }
+
+  void updateCustomer({
+    required Company company,
+  }) async {
+    var data = await CompanyRepositoriesImp().updateCompany(company);
+    data.fold(
+      (failure) {
+        change(null, status: RxStatus.error(failure.toString()));
+      },
+      (customers) {
+        change(null, status: RxStatus.success());
+        getAllCompany();
+      },
+    );
+  }
+
+  void viewCompany(Company company) {
+    Get.toNamed(
+      Routes.CompanyView,
+      arguments: company,
+    );
+  }
+
+  void editCompany(Company company) {
+    Get.toNamed(
+      Routes.CompanyAddorEditView,
+      arguments: company,
+    );
+  }
+
+  void deleteCompany(Company company) async {
+    var data = await CompanyRepositoriesImp().deleteCompany(company);
+    data.fold(
+      (failure) {
+        change(null, status: RxStatus.error(failure.toString()));
+      },
+      (customers) {
+        change(null, status: RxStatus.success());
+        getAllCompany();
+      },
+    );
   }
 }
