@@ -19,6 +19,9 @@ abstract class Routes {
   static const SpecialFeatureAddOrEditView = _Paths.SpecialFeatureAddOrEditView;
   static const SpecialFeatureView = _Paths.SpecialFeatureView;
 
+  static const UnitOptionAddOrEditView = _Paths.UnitOptionAddOrEditView;
+  static const UnitOptionView = _Paths.UnitOptionView;
+
   static const DashBoard = _Paths.DashBoard;
   static const SignIn = _Paths.SignIn;
   static const DashBoardMain = _Paths.DashBoardMain;
@@ -37,6 +40,10 @@ abstract class _Paths {
 
   static const SpecialFeatureAddOrEditView = '/SpecialFeatureAddOrEdit';
   static const SpecialFeatureView = '/SpecialFeatureView';
+
+
+  static const UnitOptionAddOrEditView = '/UnitOptionAddOrEditView';
+  static const UnitOptionView = '/UnitOptionView';
 
   static const CompanyListView = '/CompanyListView';
   static const CompanyView = '/CompanyView';

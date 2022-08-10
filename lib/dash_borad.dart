@@ -6,6 +6,7 @@ import 'package:project/app/features/company/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
+import 'package:project/app/features/rooms_unit_options/presentaion/pages/unit_options_list.dart';
 import 'package:project/app/features/rooms_unit_special/presentaion/pages/list_special_feature.dart';
 
 import 'app/core/color/app_color.dart';
@@ -82,6 +83,7 @@ class DashBoard extends GetView {
                                 CompanyListView(),
                                 UnitGeneralListView(),
                                 SpecialFeaturesListView(),
+                                UnitOptionsListView()
                               ],
                             );
                           },
@@ -237,6 +239,14 @@ class DashBoard extends GetView {
             isSelected: IndexedStackIndex == 4,
             onTap: () {
               IndexedStackIndex.value = 4;
+            },
+          ),
+          buildMenuRow(
+            iconLeading: EvaIcons.cornerDownLeft,
+            title: 'خيارات الوحدات',
+            isSelected: IndexedStackIndex == 5,
+            onTap: () {
+              IndexedStackIndex.value = 5;
             },
           ),
         ],
