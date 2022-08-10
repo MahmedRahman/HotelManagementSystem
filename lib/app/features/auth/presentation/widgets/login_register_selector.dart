@@ -59,15 +59,18 @@ class _AuthTypeSelectorState extends State<AuthTypeSelector> {
                           child: Container(
                               height: 40,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color:
-                                      selected ? KMain :  Colors.grey[200],),
+                                borderRadius: BorderRadius.circular(6),
+                                color: selected ? KMain : Colors.grey[200],
+                              ),
                               child: Center(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       e.title!,
+                                      style: TextStyle(
+                                          color:
+                                              selected ? Colors.white : null),
                                     )
                                   ],
                                 ),
