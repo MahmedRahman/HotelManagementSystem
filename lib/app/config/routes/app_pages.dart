@@ -12,6 +12,8 @@ import 'package:project/app/features/rooms_levels/presentation/pages/view.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/add.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/view.dart';
+import 'package:project/app/features/rooms_unit_options/presentaion/pages/unit_option_add_update_page.dart';
+import 'package:project/app/features/rooms_unit_options/presentaion/pages/unit_option_details.dart';
 import 'package:project/app/features/rooms_unit_special/presentaion/pages/add_special_feature.dart';
 import 'package:project/app/features/rooms_unit_special/presentaion/pages/view_special_feature.dart';
 import 'package:project/dash_borad.dart';
@@ -94,6 +96,14 @@ class AppPages {
     GetPage(
       name: _Paths.SpecialFeatureView,
       page: () => SpecialFeatureView(),
+    ),
+    GetPage(
+      name: _Paths.UnitOptionAddOrEditView,
+      page: () => UnitOptionAddEdit(),
+    ),
+    GetPage(
+      name: _Paths.UnitOptionView,
+      page: () => UnitOptionView(),
     ),
   ];
 }

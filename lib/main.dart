@@ -8,6 +8,7 @@ import 'package:project/app/features/customers_notes/presentation/controller/not
 import 'package:project/app/features/rooms_levels/presentation/controller/unit_general_controller.dart';
 import 'package:project/app/features/rooms_levels/presentation/pages/list.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/controller/unit_general_controller.dart';
+import 'package:project/app/features/rooms_unit_options/presentaion/controller/special_feature_controller.dart';
 import 'package:project/app/features/rooms_unit_special/presentaion/controller/special_feature_controller.dart';
 import 'app/features/auth/presentation/controller/auth_controller.dart';
 import 'app/translations/app_translations.dart';
@@ -62,6 +63,11 @@ class Binding extends Bindings {
 
     Get.lazyPut<RoomsLevelsController>(
       () => RoomsLevelsController(),
+      fenix: true,
+    );
+
+    Get.lazyPut<UnitOptionController>(
+      () => UnitOptionController(),
       fenix: true,
     );
   }
