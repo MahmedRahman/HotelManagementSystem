@@ -9,14 +9,20 @@ import 'package:project/app/features/rooms_unit_options/domain/entities/unit_opt
 import 'package:project/app/features/rooms_unit_options/presentaion/controller/special_feature_controller.dart';
 
 import '../../../../config/routes/app_pages.dart';
+import '../../../../core/shared_page/app_empty.dart';
 
 class UnitOptionsListView extends GetView<UnitOptionController> {
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-      (state) => buildBody(
-          optionsList: state, context: context, isEmptyWidget: false),
-      onEmpty: buildBody(context: context, isEmptyWidget: true),
+      (state) =>
+          buildBody(optionsList: state, context: context, isEmptyWidget: false),
+      onEmpty: app_empty(
+          title: 'لا يوجد خيارات للوحدات',
+          msg: 'قم بالضافة و التحكم بخيارات للوحدات',
+          onPressed: () {
+            Get.toNamed(Routes.UnitOptionAddOrEditView);
+          }),
       onError: app_error,
       onLoading: app_loading(),
     );
@@ -26,7 +32,6 @@ class UnitOptionsListView extends GetView<UnitOptionController> {
       {List<UnitOptionEntity>? optionsList,
       required BuildContext context,
       required bool isEmptyWidget}) {
-
     Widget bntController(UnitOptionEntity optionEntity) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
