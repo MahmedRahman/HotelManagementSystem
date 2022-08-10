@@ -1,4 +1,3 @@
-
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:project/app/core/responsive.dart';
 import 'package:project/app/features/company/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
+import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
 
 import 'app/core/color/app_color.dart';
 
@@ -81,6 +81,7 @@ class DashBoard extends GetView {
                                 DashBoardView(),
                                 CustomersListView(),
                                 CompanyListView(),
+                                UnitGeneralListView(),
                               ],
                             );
                           },
@@ -220,6 +221,14 @@ class DashBoard extends GetView {
             isSelected: IndexedStackIndex == 2,
             onTap: () {
               IndexedStackIndex.value = 2;
+            },
+          ),
+          buildMenuRow(
+            iconLeading: EvaIcons.cornerDownLeft,
+            title: 'المميزات العامة',
+            isSelected: IndexedStackIndex == 3,
+            onTap: () {
+              IndexedStackIndex.value = 3;
             },
           ),
         ],

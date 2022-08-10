@@ -1,34 +1,32 @@
 import 'package:dartz/dartz.dart';
 import 'package:project/app/core/failures.dart';
-import 'package:project/app/features/customers/domain/entities/customers.dart';
-import 'package:project/app/features/customers/domain/repositories/customer_resp.dart';
+import 'package:project/app/features/rooms_unit_general/domain/entities/unit_general_entites.dart';
+import 'package:project/app/features/rooms_unit_general/domain/repositories/unit_general_resp.dart';
 
-List<Customer> customers = [];
+List<UnitGeneral> unitGeneralList = [];
 
-class UnitGeneralRepositoryImpl implements CustomerRepository {
+class UnitGeneralRepositoryImpl implements UnitGeneralRepository {
   @override
-  Future<Either<Failure, List<Customer>>> getAllCustomers() async {
-    return Right(customers);
+  Future<Either<Failure, List<UnitGeneral>>> getAllUnitGeneral() async {
+    return Right(unitGeneralList);
   }
 
   @override
-  Future<Either<Failure, Unit>> addCustomer(Customer customer) async {
-    customers.add(customer);
+  Future<Either<Failure, Unit>> addUnitGeneral(UnitGeneral unitGeneral) async {
+    unitGeneralList.add(unitGeneral);
     return right(unit);
   }
 
   @override
-  Future<Either<Failure, Unit>> updateCustomer(Customer oldCustomer, Customer newCustomer) async {
-    customers.remove(oldCustomer);
-    customers.add(newCustomer);
+  Future<Either<Failure, Unit>> updateUnitGeneral(UnitGeneral unitGeneral) async {
+    // unitGeneralList.remove(unitGeneral);
+    //unitGeneralList.add(unitGeneral);
     return right(unit);
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteCustomer(Customer customer) async {
-    customers.remove(customer);
+  Future<Either<Failure, Unit>> deleteUnitGeneral(UnitGeneral unitGeneral) async {
+    unitGeneralList.remove(unitGeneral);
     return right(unit);
   }
-
-  
 }

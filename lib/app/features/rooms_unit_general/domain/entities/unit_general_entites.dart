@@ -1,5 +1,10 @@
 class UnitGeneral {
-  String? name;
-  bool? state;
-  int? order;
+  int id;
+  String name = '';
+  bool state = true;
+  int order = 0;
+
+  UnitGeneral({
+    required this.id,
+  });
 }

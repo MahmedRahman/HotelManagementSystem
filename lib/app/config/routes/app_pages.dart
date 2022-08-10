@@ -6,6 +6,9 @@ import 'package:project/app/features/customers/presentation/pages/add.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/view.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
+import 'package:project/app/features/rooms_unit_general/presentation/pages/add.dart';
+import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
+import 'package:project/app/features/rooms_unit_general/presentation/pages/view.dart';
 import 'package:project/dash_borad.dart';
 
 import '../../features/auth/presentation/pages/sign_in.dart';
@@ -50,6 +53,18 @@ class AppPages {
     GetPage(
       name: _Paths.CompanyAddorEditView,
       page: () => CompanyAddorEditView(),
+    ),
+    GetPage(
+      name: _Paths.UnitGeneralListView,
+      page: () => UnitGeneralListView(),
+    ),
+    GetPage(
+      name: _Paths.UnitGeneralView,
+      page: () => UnitGeneralView(),
+    ),
+    GetPage(
+      name: _Paths.UnitGeneralAddorEditView,
+      page: () => UnitGeneralAddorEditView(),
     ),
     GetPage(
       name: _Paths.SignIn,
