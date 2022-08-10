@@ -6,6 +6,9 @@ import 'package:project/app/features/customers/presentation/pages/add.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/view.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
+import 'package:project/app/features/rooms_levels/presentation/pages/add.dart';
+import 'package:project/app/features/rooms_levels/presentation/pages/list.dart';
+import 'package:project/app/features/rooms_levels/presentation/pages/view.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/add.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/view.dart';
@@ -67,6 +70,18 @@ class AppPages {
     GetPage(
       name: _Paths.UnitGeneralAddorEditView,
       page: () => UnitGeneralAddorEditView(),
+    ),
+    GetPage(
+      name: _Paths.RoomsLevelsListView,
+      page: () => RoomsLevelsListView(),
+    ),
+    GetPage(
+      name: _Paths.RoomsLevelsView,
+      page: () => RoomsLevelsView(),
+    ),
+    GetPage(
+      name: _Paths.RoomsLevelsAddorEditView,
+      page: () => RoomsLevelsAddorEditView(),
     ),
     GetPage(
       name: _Paths.SignIn,

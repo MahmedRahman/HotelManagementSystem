@@ -9,10 +9,12 @@ import 'package:project/app/core/shared_page/app_loading.dart';
 import 'package:project/app/core/shared_page/app_not_internet.dart';
 import 'package:project/app/features/customers/domain/entities/customers.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
+import 'package:project/app/features/rooms_levels/domain/entities/rooms_levels.dart';
+import 'package:project/app/features/rooms_levels/presentation/controller/unit_general_controller.dart';
 import 'package:project/app/features/rooms_unit_general/domain/entities/unit_general_entites.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/controller/unit_general_controller.dart';
 
-class UnitGeneralListView extends GetView<UnitGeneralController> {
+class RoomsLevelsListView extends GetView<RoomsLevelsController> {
   @override
   Widget build(BuildContext context) {
     return controller.obx(
@@ -21,28 +23,28 @@ class UnitGeneralListView extends GetView<UnitGeneralController> {
           title: 'لا يوجد بالمميزات العامة',
           msg: 'قم باضافة التحكم بالمميزات العامة',
           onPressed: () {
-            Get.toNamed(Routes.UnitGeneralAddorEditView);
+            Get.toNamed(Routes.RoomsLevelsAddorEditView);
           }),
       onError: app_error,
       onLoading: app_loading(),
     );
   }
 
-  Scaffold buildBody(List<UnitGeneral>? unitGeneralList) {
-    Widget bntController(UnitGeneral unitGeneral) {
+  Scaffold buildBody(List<RoomsLevels>? RoomsLevelsList) {
+    Widget bntController(RoomsLevels roomsLevels) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
             icon: Icon(Icons.remove_red_eye),
             onPressed: () {
-              controller.viewUnitGeneral(unitGeneral);
+              controller.viewRoomsLevels(roomsLevels);
             },
           ),
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-              controller.editUnitGeneral(unitGeneral);
+              controller.editRoomsLevels(roomsLevels);
             },
           ),
           IconButton(
@@ -55,7 +57,7 @@ class UnitGeneralListView extends GetView<UnitGeneralController> {
                   Get.back();
                 },
                 btnYesPress: () {
-                  controller.deleteUnitGeneral(unitGeneral);
+                  controller.deleteRoomsLevels(roomsLevels);
                 },
               );
             },
@@ -112,16 +114,16 @@ class UnitGeneralListView extends GetView<UnitGeneralController> {
       ),
       columns: tableHeader,
       rows: List.generate(
-        unitGeneralList!.length,
+        RoomsLevelsList!.length,
         (index) => DataRow(
           cells: [
             DataCell(
               Text(
-                unitGeneralList.elementAt(index).name.toString(),
+                RoomsLevelsList.elementAt(index).name.toString(),
               ),
             ),
             DataCell(
-              unitGeneralList.elementAt(index).state
+              RoomsLevelsList.elementAt(index).state
                   ? Text(
                       'فعال',
                       style: TextStyle(color: Colors.green),
@@ -133,12 +135,12 @@ class UnitGeneralListView extends GetView<UnitGeneralController> {
             ),
             DataCell(
               Text(
-                unitGeneralList.elementAt(index).order.toString(),
+                RoomsLevelsList.elementAt(index).order.toString(),
               ),
             ),
             DataCell(
               bntController(
-                unitGeneralList.elementAt(index),
+                RoomsLevelsList.elementAt(index),
               ),
             ),
           ],
@@ -183,7 +185,7 @@ class UnitGeneralListView extends GetView<UnitGeneralController> {
                           ),
                         ),
                         subtitle: Text(
-                          'عدد المميزات العامة : ${unitGeneralList.length}',
+                          'عدد المميزات العامة : ${RoomsLevelsList.length}',
                           style: TextStyle(
                             color: KWhite70,
                             height: 1.5,
@@ -198,7 +200,7 @@ class UnitGeneralListView extends GetView<UnitGeneralController> {
                       color: KWhite,
                     ),
                     onPressed: () {
-                      Get.toNamed(Routes.UnitGeneralAddorEditView);
+                      Get.toNamed(Routes.RoomsLevelsAddorEditView);
                     },
                   ),
                   IconButton(
@@ -207,7 +209,7 @@ class UnitGeneralListView extends GetView<UnitGeneralController> {
                       color: KWhite,
                     ),
                     onPressed: () {
-                      controller.getAllUnitGeneral();
+                      controller.getAllRoomsLevels();
                     },
                   ),
                 ],

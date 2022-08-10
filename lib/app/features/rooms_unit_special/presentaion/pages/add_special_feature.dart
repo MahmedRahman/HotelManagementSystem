@@ -4,6 +4,7 @@ import 'package:project/app/constans/app_constants.dart';
 import 'package:project/app/core/responsive.dart';
 import 'package:project/app/core/shared_components/build_button.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
+import 'package:project/app/core/shared_components/build_status_form_field.dart';
 import 'package:project/app/core/shared_components/build_text_form_field.dart';
 import 'package:project/app/core/validate.dart';
 import 'package:project/app/features/rooms_unit_special/domain/entities/room_special_features.dart';
@@ -46,34 +47,35 @@ class SpecialFeatureAddEdit extends GetView<SpecialFeatureController> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        buildRowInColumn(
-                          context: context,
-                          left: buildTextFormField(
-                              labelText: 'الاسم',
-                              requiredFiled: true,
-                              inputMinLetterNumber: 3,
-                              inputMaxLetterNumber: 250,
-                              inputLetterType: LetterType.LetterBothWithSpace,
-                              initialValue: featureEntity.name,
-                              onChanged: (vlu) => featureEntity.name = vlu),
-                          right: buildTextFormField(
-                            labelText: 'الرتيب',
+                        buildTextFormField(
+                            labelText: 'الاسم',
                             requiredFiled: true,
-                            inputMaxLetterNumber: 20,
-                            inputLetterType: LetterType.Number,
-                            validator: validateMobile,
-                            initialValue: featureEntity.order.toString(),
-                            onChanged: (vlu) => featureEntity.order =
-                                int.tryParse(vlu.toString()),
-                            onSaved: (value) {
-                              featureEntity.order =
-                                  int.tryParse(value.toString());
-                            },
-                          ),
+                            inputMinLetterNumber: 3,
+                            inputMaxLetterNumber: 250,
+                            inputLetterType: LetterType.LetterBothWithSpace,
+                            initialValue: featureEntity.name,
+                            onChanged: (vlu) => featureEntity.name = vlu),
+                        kSizedBoxSpaceH10(),
+                        buildStatusFormField(
+                          labelText: 'الحالة',
+                          initialValue: featureEntity.state,
+                          onChanged: (value) {
+                            featureEntity.state = value;
+                          },
+                        ),
+                        buildTextFormField(
+                          labelText: 'الرتيب',
+                          requiredFiled: true,
+                          inputMaxLetterNumber: 20,
+                          inputLetterType: LetterType.Number,
+                          validator: validateMobile,
+                          initialValue: featureEntity.order.toString(),
+                          onChanged: (vlu) => featureEntity.order = int.tryParse(vlu.toString()),
+                          onSaved: (value) {
+                            featureEntity.order = int.tryParse(value.toString());
+                          },
                         ),
                         kSizedBoxSpaceH10(),
-                        // status
-                        Switch.adaptive(value: true, onChanged: (newValue) {}),
                         kSizedBoxSpaceH20(),
                       ],
                     ),

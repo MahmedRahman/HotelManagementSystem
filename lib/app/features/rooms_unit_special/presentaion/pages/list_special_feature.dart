@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:project/app/constans/app_constants.dart';
 import 'package:project/app/core/color/app_color.dart';
 import 'package:project/app/core/dialog.dart';
+import 'package:project/app/core/shared_page/app_empty.dart';
 import 'package:project/app/core/shared_page/app_loading.dart';
 import 'package:project/app/core/shared_page/app_not_internet.dart';
 import 'package:project/app/features/rooms_unit_special/domain/entities/room_special_features.dart';
@@ -14,19 +15,21 @@ class SpecialFeaturesListView extends GetView<SpecialFeatureController> {
   @override
   Widget build(BuildContext context) {
     return controller.obx(
-      (state) => buildBody(
-          featuresList: state, context: context, isEmptyWidget: false),
-      onEmpty: buildBody(context: context, isEmptyWidget: true),
+      (state) => buildBody(featuresList: state, context: context, isEmptyWidget: false),
+      //onEmpty: buildBody(context: context, isEmptyWidget: true),
+      onEmpty: app_empty(
+          title: 'لا يوجد مميزات خاصة',
+          msg: 'قم باضافة التحكم بالمميزات الخاصة',
+          onPressed: () {
+            Get.toNamed(Routes.SpecialFeatureAddOrEditView);
+          }),
       onError: app_error,
       onLoading: app_loading(),
     );
   }
 
   Padding buildBody(
-      {List<SpecialFeatureEntity>? featuresList,
-      required BuildContext context,
-      required bool isEmptyWidget}) {
-
+      {List<SpecialFeatureEntity>? featuresList, required BuildContext context, required bool isEmptyWidget}) {
     Widget bntController(SpecialFeatureEntity featureEntity) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -209,8 +212,7 @@ class SpecialFeaturesListView extends GetView<SpecialFeatureController> {
                       Icons.add,
                       color: KWhite,
                     ),
-                    onPressed: () =>
-                        Get.toNamed(Routes.SpecialFeatureAddOrEditView)),
+                    onPressed: () => Get.toNamed(Routes.SpecialFeatureAddOrEditView)),
                 IconButton(
                   icon: Icon(
                     Icons.refresh,

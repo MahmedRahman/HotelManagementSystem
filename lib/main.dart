@@ -5,6 +5,8 @@ import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/features/company/presentation/controller/company_controller.dart';
 import 'package:project/app/features/customers/presentation/controller/customers_controller.dart';
 import 'package:project/app/features/customers_notes/presentation/controller/note_for_customer_controller.dart';
+import 'package:project/app/features/rooms_levels/presentation/controller/unit_general_controller.dart';
+import 'package:project/app/features/rooms_levels/presentation/pages/list.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/controller/unit_general_controller.dart';
 import 'package:project/app/features/rooms_unit_special/presentaion/controller/special_feature_controller.dart';
 import 'app/features/auth/presentation/controller/auth_controller.dart';
@@ -55,6 +57,11 @@ class Binding extends Bindings {
     );
     Get.lazyPut<SpecialFeatureController>(
       () => SpecialFeatureController(),
+      fenix: true,
+    );
+
+    Get.lazyPut<RoomsLevelsController>(
+      () => RoomsLevelsController(),
       fenix: true,
     );
   }

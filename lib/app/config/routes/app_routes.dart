@@ -16,6 +16,10 @@ abstract class Routes {
   static const UnitGeneralView = _Paths.UnitGeneralView;
   static const UnitGeneralAddorEditView = _Paths.UnitGeneralAddorEditView;
 
+  static const RoomsLevelsListView = _Paths.RoomsLevelsListView;
+  static const RoomsLevelsView = _Paths.RoomsLevelsView;
+  static const RoomsLevelsAddorEditView = _Paths.RoomsLevelsAddorEditView;
+
   static const SpecialFeatureAddOrEditView = _Paths.SpecialFeatureAddOrEditView;
   static const SpecialFeatureView = _Paths.SpecialFeatureView;
 
@@ -34,7 +38,6 @@ abstract class _Paths {
   static const CustomerView = '/CustomerView';
   static const CustomerAddorEditView = '/CustomerAddorEdit';
 
-
   static const SpecialFeatureAddOrEditView = '/SpecialFeatureAddOrEdit';
   static const SpecialFeatureView = '/SpecialFeatureView';
 
@@ -45,4 +48,8 @@ abstract class _Paths {
   static const UnitGeneralListView = '/UnitGeneralListView';
   static const UnitGeneralView = '/UnitGeneralView';
   static const UnitGeneralAddorEditView = '/UnitGeneralAddorEditView';
+
+  static const RoomsLevelsListView = '/RoomsLevelsListView';
+  static const RoomsLevelsView = '/RoomsLevelsView';
+  static const RoomsLevelsAddorEditView = '/RoomsLevelsAddorEditView';
 }

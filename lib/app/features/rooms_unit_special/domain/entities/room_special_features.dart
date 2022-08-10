@@ -1,8 +1,7 @@
 class SpecialFeatureEntity {
   String? name;
-  bool? state;
+  bool state = true;
   int? order;
 
-  SpecialFeatureEntity(
-      {required this.name, required this.state, required this.order});
+  SpecialFeatureEntity({required this.name, required this.state, required this.order});
 }

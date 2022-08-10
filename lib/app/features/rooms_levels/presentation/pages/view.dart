@@ -2,30 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/app/features/customers/domain/entities/customers.dart';
 import 'package:project/app/core/shared_components/build_helper_text.dart';
+import 'package:project/app/features/rooms_levels/domain/entities/rooms_levels.dart';
 import 'package:project/app/features/rooms_unit_general/domain/entities/unit_general_entites.dart';
 
-class UnitGeneralView extends GetView {
+class RoomsLevelsView extends GetView {
   @override
   Widget build(BuildContext context) {
     return buildBody(Get.arguments);
   }
 
-  Widget buildBody(UnitGeneral unitGeneral) {
+  Widget buildBody(RoomsLevels roomsLevels) {
     return Scaffold(
       body: ListView(
         children: [
           buildHelperTile(text: 'تفاصيل المميزات العامة', icon: null),
           buildHelperLabel(
             helperText: 'الاسم',
-            text: unitGeneral.name.toString(),
+            text: roomsLevels.name.toString(),
           ),
           buildHelperLabel(
             helperText: 'الحالة',
-            text: unitGeneral.state.toString(),
+            text: roomsLevels.state.toString(),
           ),
           buildHelperLabel(
             helperText: 'الترتيب',
-            text: unitGeneral.order.toString(),
+            text: roomsLevels.order.toString(),
           ),
         ],
       ),

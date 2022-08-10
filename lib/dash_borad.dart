@@ -1,10 +1,12 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/app/constans/app_constants.dart';
 import 'package:project/app/core/responsive.dart';
 import 'package:project/app/features/company/presentation/pages/list.dart';
 import 'package:project/app/features/customers/presentation/pages/list.dart';
 import 'package:project/app/features/dashBoard/presentation/pages/dashBoard.dart';
+import 'package:project/app/features/rooms_levels/presentation/pages/list.dart';
 import 'package:project/app/features/rooms_unit_general/presentation/pages/list.dart';
 import 'package:project/app/features/rooms_unit_special/presentaion/pages/list_special_feature.dart';
 
@@ -82,6 +84,7 @@ class DashBoard extends GetView {
                                 CompanyListView(),
                                 UnitGeneralListView(),
                                 SpecialFeaturesListView(),
+                                RoomsLevelsListView(),
                               ],
                             );
                           },
@@ -223,21 +226,56 @@ class DashBoard extends GetView {
               IndexedStackIndex.value = 2;
             },
           ),
-          buildMenuRow(
-            iconLeading: EvaIcons.cornerDownLeft,
-            title: 'المميزات العامة',
-            isSelected: IndexedStackIndex == 3,
-            onTap: () {
-              IndexedStackIndex.value = 3;
-            },
-          ),
-          buildMenuRow(
-            iconLeading: EvaIcons.cornerDownLeft,
-            title: 'المميزات الخاصة',
-            isSelected: IndexedStackIndex == 4,
-            onTap: () {
-              IndexedStackIndex.value = 4;
-            },
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 40,
+                color: KWhite70,
+                child: Row(
+                  children: [
+                    kSizedBoxSpaceW10(),
+                    Text(
+                      'الوحدات',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: KMain,
+                        height: 1,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                children: [
+                  buildMenuRow(
+                    iconLeading: EvaIcons.cornerDownLeft,
+                    title: 'المميزات العامة',
+                    isSelected: IndexedStackIndex == 3,
+                    onTap: () {
+                      IndexedStackIndex.value = 3;
+                    },
+                  ),
+                  buildMenuRow(
+                    iconLeading: EvaIcons.cornerDownLeft,
+                    title: 'المميزات الخاصة',
+                    isSelected: IndexedStackIndex == 4,
+                    onTap: () {
+                      IndexedStackIndex.value = 4;
+                    },
+                  ),
+                  buildMenuRow(
+                    iconLeading: EvaIcons.cornerDownLeft,
+                    title: 'الطوابق',
+                    isSelected: IndexedStackIndex == 5,
+                    onTap: () {
+                      IndexedStackIndex.value = 5;
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
