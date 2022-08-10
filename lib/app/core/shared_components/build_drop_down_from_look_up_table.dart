@@ -39,17 +39,19 @@ Widget buildDropdownFromLookUpTable({
       ),
       kSizedBoxSpaceH10(),
       DropdownSearch<Map<String, dynamic>>(
-        mode: Mode.DIALOG,
-        showSelectedItems: false,
-        items: items,
+        popupProps: PopupProps.bottomSheet(),
+
+        // mode: Mode.DIALOG,
+        // showSelectedItems: false,
+        // items: items,
         selectedItem: selectedItem,
         itemAsString: (Map<String, dynamic>? u) => u!['name'],
-        dropdownSearchDecoration: InputDecoration(
-          fillColor: Colors.grey[200],
-          filled: true,
-          hintText: hintText == null ? labelText : hintText,
-          border: OutlineInputBorder(),
-        ),
+        // dropdownSearchDecoration: InputDecoration(
+        //   fillColor: Colors.grey[200],
+        //   filled: true,
+        //   hintText: hintText == null ? labelText : hintText,
+        //   border: OutlineInputBorder(),
+        // ),
         onChanged: onSaved,
       ),
     ],

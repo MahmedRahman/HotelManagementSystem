@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:project/app/core/failures.dart';
-import 'package:project/app/features/customers/domain/entities/customers.dart';
-import 'package:project/app/features/customers/domain/repositories/customer_resp.dart';
 import 'package:project/app/features/notes_for_customers/domain/repositoties/note_for_customer_repo.dart';
 
 import '../entities/note_for_customer.dart';

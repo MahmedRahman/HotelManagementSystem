@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/app/config/routes/app_pages.dart';
 import 'package:project/app/constans/app_constants.dart';
 import 'package:project/app/core/color/app_color.dart';
 

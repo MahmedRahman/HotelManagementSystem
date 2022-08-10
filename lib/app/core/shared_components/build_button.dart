@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project/app/core/color/app_color.dart';
 
 Widget buildButton({required void Function() onPressed, required String text}) {
